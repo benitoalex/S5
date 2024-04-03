@@ -1,4 +1,4 @@
-export function Card({ step }) {
+export function Card({ step, nextStep }) {
     return (
         <article>
             <header>
@@ -7,6 +7,7 @@ export function Card({ step }) {
                     <div>
                         {step.description}
                     </div>
+                    <button onClick={nextStep}>Next</button>
                 </div>
             </header>
         </article>
