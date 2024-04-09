@@ -16,9 +16,14 @@
     cursor: pointer;
     align-items: center;
     font-size: 14px;
-    position: absolute;
-    bottom: 20px;
-    right: 20px ;
+    margin-left: 10px;
+    
+}
+
+.button-container {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
 }
 
 .arrow-button > .arrow {
@@ -62,6 +67,61 @@
 }
 
 .arrow-button:hover {
+    background-color: #ffffff;
+}
+.arrow2-button {
+    display: inline-flex;
+    color: #ffffff;
+    background-color: #000000;
+    padding: 20px 16px;
+    border-radius: 50px;
+    transition: all .3s ease;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    font-size: 14px;
+}
+
+.arrow2-button > .arrow {
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid #ffffff; 
+    border-top: 2px solid #ffffff; 
+    position: relative;
+    transform: rotate(-50deg); 
+    margin: 0 6px;
+    transition: all .3s ease;
+}
+
+.arrow2-button > .arrow::before {
+    display: block;
+    background-color: currentColor;
+    width: 3px;
+    transform-origin: bottom left; 
+    height: 2px;
+    position: absolute;
+    opacity: 0;
+    bottom: calc(-2px / 2);
+    transform: rotate(-45deg); 
+    transition: all .3s ease;
+    content: "";
+    left: 0; 
+}
+
+.arrow2-button:hover > .arrow {
+    width: 6px;
+    height: 6px;
+    transform: rotate(-50deg) translate(-6px, -6px); 
+    border-left: 2px solid #000000; 
+    border-top: 2px solid #000000; 
+}
+
+.arrow2-button:hover > .arrow::before {
+    opacity: 1;
+    width: 8px;
+}
+
+.arrow2-button:hover {
     background-color: #ffffff;
 }
 

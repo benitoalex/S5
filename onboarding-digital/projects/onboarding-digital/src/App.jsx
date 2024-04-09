@@ -12,7 +12,7 @@ export function App() {
             description: 'Un mínim de 30 hores a la setmana. Si no en tens prou, hauràs de dedicar-li més hores. Al principi sembla impossible, però notaràs una millora ràpidament.',
             image: timeManagementImage,
             bgColor: '#4a9b95'
-        },{
+        }, {
             title: 'Programa projectes propis',
             description: 'Més val 10 hores treballant en prjectes propis, que 10 hores mirant tutorials. La motivació i la implicació en el projecte ajudarà a accelerar el teu aprenentatge.',
             image: programmingImage,
@@ -25,11 +25,22 @@ export function App() {
         }]
 
     const nextStep = () => {
-        setCurrentStep(currentStep + 1);
+        if (currentStep < tutorialData.length - 1) {
+            setCurrentStep(currentStep + 1);
+        }
     };
+
+    const prevStep = () => {
+        if (currentStep > 0) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
+
+
     return (
         <section>
-            <Card step={tutorialData[currentStep]} nextStep={nextStep} />
+            <Card step={tutorialData[currentStep]} nextStep={nextStep} prevStep={prevStep}showNextButton={currentStep < tutorialData.length - 1}
+                showPrevButton={currentStep > 0} />
         </section>
     )
 }
