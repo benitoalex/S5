@@ -1,8 +1,8 @@
+import React from 'react';
 import './card.css';
 import Indicator from './indicator.jsx';
 
-
-export function Card({ step, nextStep, prevStep, showNextButton, showPrevButton, totalSteps, currentStep }) {
+export function Card({ step, nextStep, prevStep, showNextButton, showPrevButton, totalSteps, currentStep, onChangeStep }) {
     const cardStyle = {
         backgroundColor: step.bgColor
     }
@@ -26,7 +26,7 @@ export function Card({ step, nextStep, prevStep, showNextButton, showPrevButton,
                                 {showPrevButton && <button className="arrow2-button" onClick={prevStep}><span className="arrow"></span></button>}
                                 {showNextButton && <button className="arrow-button" onClick={nextStep}><span className="arrow"></span></button>}
                             </div>
-                            <Indicator totalSteps={totalSteps} currentStep={currentStep} />
+                            
                         </div>
                     </div>
                 </div>

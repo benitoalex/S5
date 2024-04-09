@@ -3,6 +3,8 @@ import { Card } from './card.jsx';
 import timeManagementImage from './Images/time_managment.svg';
 import programmingImage from './Images/programming.svg';
 import meditationImage from './Images/meditation.svg';
+import Indicator from './indicator.jsx';
+
 export function App() {
     const [currentStep, setCurrentStep] = useState(0);
 
@@ -22,7 +24,8 @@ export function App() {
             description: 'Descansar bé i desconectar són vitals. D`aquesta manera reduiras l`estrés i l`ansietat. Milloraràs la teva concentració i consolidaràs el teu aprenentatge.',
             image: meditationImage,
             bgColor: '#ffe061'
-        }]
+        }
+    ];
 
     const nextStep = () => {
         if (currentStep < tutorialData.length - 1) {
@@ -36,6 +39,9 @@ export function App() {
         }
     };
 
+    const handleChangeStep = step => {
+        setCurrentStep(step);
+    };
 
     return (
         <section>
@@ -46,10 +52,13 @@ export function App() {
                 showNextButton={currentStep < tutorialData.length - 1}
                 showPrevButton={currentStep > 0}
                 totalSteps={tutorialData.length}
-                currentStep={currentStep} 
+                currentStep={currentStep}
             />
-
-
+            <Indicator
+                totalSteps={tutorialData.length}
+                currentStep={currentStep}
+                onChangeStep={handleChangeStep}
+            />
         </section>
-    )
+    );
 }

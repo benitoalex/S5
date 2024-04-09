@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react'; 
 import styled from 'styled-components';
 
 const IndicatorContainer = styled.div`
@@ -19,16 +19,25 @@ const StepIndicator = styled.span`
   border-radius: ${props => props.isActive ? '50px' : '50%'}; /* Ajustamos el borde según isActive */
   margin: 0 5px;
   background-color: ${props => props.isActive ? '#000000' : '	#D3D3D3'};
+  cursor: pointer;
 `;
 
-const Indicator = ({ totalSteps, currentStep }) => {
-  return (
-    <IndicatorContainer>
-      {[...Array(totalSteps)].map((_, index) => (
-        <StepIndicator key={index} isActive={index === currentStep} />
-      ))}
-    </IndicatorContainer>
-  );
-};
+class Indicator extends Component {
+    render() {
+      const { totalSteps, currentStep, onChangeStep } = this.props;
+  
+      return (
+        <IndicatorContainer>
+          {[...Array(totalSteps)].map((_, index) => (
+            <StepIndicator
+              key={index}
+              isActive={index === currentStep}
+              onClick={() => onChangeStep(index)}
+            />
+          ))}
+        </IndicatorContainer>
+      );
+    }
+  }
 
-export default Indicator;
+    export default Indicator;
