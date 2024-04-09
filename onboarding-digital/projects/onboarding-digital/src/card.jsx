@@ -1,6 +1,5 @@
 import React from 'react';
 import './card.css';
-import Indicator from './indicator.jsx';
 
 export function Card({ step, nextStep, prevStep, showNextButton, showPrevButton, totalSteps, currentStep, onChangeStep }) {
     const cardStyle = {

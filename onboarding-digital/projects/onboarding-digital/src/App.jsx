@@ -3,10 +3,60 @@ import { Card } from './card.jsx';
 import timeManagementImage from './Images/time_managment.svg';
 import programmingImage from './Images/programming.svg';
 import meditationImage from './Images/meditation.svg';
+import styled, { keyframes } from 'styled-components';
 import Indicator from './indicator.jsx';
+
+const slideInLeft = keyframes`
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideOutRight = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+`;
+
+const slideInRight = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideOutLeft = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+`;
+
+const CardContainer = styled.div`
+  position: relative;
+  width: 100%;
+  animation: ${props =>
+    props.direction === 'left' ? slideInLeft : slideInRight} 0.5s ease;
+
+  &.exit {
+    animation: ${props =>
+    props.direction === 'left' ? slideOutRight : slideOutLeft} 0.5s ease;
+  }
+`;
 
 export function App() {
     const [currentStep, setCurrentStep] = useState(0);
+    const [direction, setDirection] = useState(null);
 
     const tutorialData = [
         {
@@ -29,31 +79,37 @@ export function App() {
 
     const nextStep = () => {
         if (currentStep < tutorialData.length - 1) {
+            setDirection('right');
             setCurrentStep(currentStep + 1);
         }
     };
 
     const prevStep = () => {
         if (currentStep > 0) {
+            setDirection('left');
             setCurrentStep(currentStep - 1);
         }
     };
 
     const handleChangeStep = step => {
+        setDirection(step > currentStep ? 'right' : 'left');
         setCurrentStep(step);
     };
 
     return (
         <section>
-            <Card
-                step={tutorialData[currentStep]}
-                nextStep={nextStep}
-                prevStep={prevStep}
-                showNextButton={currentStep < tutorialData.length - 1}
-                showPrevButton={currentStep > 0}
-                totalSteps={tutorialData.length}
-                currentStep={currentStep}
-            />
+            <CardContainer direction={direction}>
+                <Card
+                    key={currentStep}
+                    step={tutorialData[currentStep]}
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    showNextButton={currentStep < tutorialData.length - 1}
+                    showPrevButton={currentStep > 0}
+                    totalSteps={tutorialData.length}
+                    currentStep={currentStep}
+                />
+            </CardContainer>
             <Indicator
                 totalSteps={tutorialData.length}
                 currentStep={currentStep}
