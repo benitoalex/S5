@@ -39,8 +39,17 @@ export function App() {
 
     return (
         <section>
-            <Card step={tutorialData[currentStep]} nextStep={nextStep} prevStep={prevStep}showNextButton={currentStep < tutorialData.length - 1}
-                showPrevButton={currentStep > 0} />
+            <Card
+                step={tutorialData[currentStep]}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                showNextButton={currentStep < tutorialData.length - 1}
+                showPrevButton={currentStep > 0}
+                totalSteps={tutorialData.length}
+                currentStep={currentStep} 
+            />
+
+
         </section>
     )
 }
